@@ -1,0 +1,83 @@
+/* src/components/Login.css */
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 150%; /* Make container span the full width */
+    background-color: #1d1f30;
+    color: #ffffff;
+    padding: 0px 50px;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 80px; /* Adjust the logo size */
+}
+
+.logo h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #ffffff;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 80%; /* Make the form responsive */
+    max-width: 400px; /* Set a maximum width for larger screens */
+}
+
+label {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #d4d4d4;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #3b3b3b;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.show-password {
+    display: flex;
+    align-items: center;
+    color: #d4d4d4;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+

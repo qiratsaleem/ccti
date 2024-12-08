@@ -1,0 +1,80 @@
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Start off-screen on the right */
+    width: 250px;
+    height: 100%;
+    background-color: #1466B8;
+    color: #FFFFFF;
+    padding: 20px;
+    transition: right 0.3s ease; /* Smooth slide effect */
+    z-index: 1000; /* Ensure sidebar is on top */
+}
+
+.sidebar.open {
+    right: 0; /* Slide in when open */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+/* Close button inside the sidebar */
+.close-button {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Admin Section */
+.admin-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.admin-name {
+    font-weight: bold;
+}
+
+/* Menu Items */
+.menu-item {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 10px 0;
+    display: block;
+}
+
+.connectivity-section h3 {
+    margin: 20px 0 10px;
+}
+
+/* Logout Button */
+.logout-button {
+    background-color: #FF5C5C;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
