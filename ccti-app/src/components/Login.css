@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    width: 150%; /* Make container span the full width */
+    width: 100%; /* Make container span the full width */
     background-color: #1d1f30;
     color: #ffffff;
     padding: 0px 50px;
