@@ -171,12 +171,12 @@
     .predicted-outcome,
     .ti-platforms {
         width: 100%;
-        padding: 15px; 
+        padding: 10px; 
     }
 
     .threshold-comparison {
         width: 100%;
-        padding: 15px;
+        padding: 10px;
     }
 
     .back-arrow,
