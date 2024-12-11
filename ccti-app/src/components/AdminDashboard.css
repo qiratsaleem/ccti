@@ -142,84 +142,98 @@ button:hover {
   .stats-cards {
     flex-direction: column;
     width: 100%;
-    gap: 5px; 
+    gap: 10px;
+    max-width: 400px; /* Limit the width */
+    margin: 0 auto; /* Center it */
   }
 
   .stat-card {
-    flex: 1 1 100%; 
-    min-width: 100%; 
+    flex: 1 1 90%;
+    min-width: auto;
+    max-width: 300px; /* Prevent excessive width */
+    margin: 0 auto; /* Center align */
   }
 
   .chart {
-    flex: 1 1 100%; 
+    flex: 1 1 100%;
     margin-top: 20px;
+    max-width: 400px; /* Limit chart size */
   }
 
   .log-entry {
-    padding: 15px; 
-    margin-bottom: 10px; 
+    padding: 15px;
+    margin-bottom: 10px;
+    max-width: 400px; /* Limit width */
+    margin: 0 auto; /* Center align */
   }
 
   .action-buttons {
-    flex-direction: column; 
-    gap: 5px;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px; /* Restrict button container size */
+    margin: 0 auto; /* Center align */
   }
 
-  .menu-button {
-    font-size: 20px; 
+  button {
+    font-size: 12px;
+    padding: 10px;
+    max-width: 250px; /* Prevent buttons from stretching too much */
+    margin: 0 auto; /* Center align */
   }
 }
+
 @media (max-width: 480px) {
   .dashboard-container {
-    padding: 15px; 
-  }
-
-  header {
-    width: 100%; 
-    justify-content: flex-end;
+    padding: 10px;
+    max-width: 400px; /* Prevent entire container from expanding */
+    margin: 0 auto; /* Center align */
   }
 
   .menu-button {
-    font-size: 18px; 
+    font-size: 18px;
   }
 
   .stats-cards {
-    flex-direction: column; 
-    width: 100%; 
     gap: 10px;
   }
 
   .stat-card {
-    font-size: 12px; 
-    padding: 10px; 
-    min-width: 100%; 
+    font-size: 12px;
+    padding: 10px;
+    max-width: 300px; /* Ensure compact layout */
+    margin: 0 auto; /* Center align */
   }
 
   .chart {
-    padding: 10px; 
+    padding: 10px;
     margin-top: 15px;
-    flex: 1 1 100%; 
+    max-width: 320px; /* Compact charts on small devices */
   }
 
   .large-chart,
   .small-chart {
-    width: 100%; 
-    max-width: 100%; 
+    width: 100%;
+    max-width: 320px; /* Avoid excessive size */
   }
 
   .log-entry {
-    padding: 10px; 
-    font-size: 12px; 
-    margin-bottom: 10px; 
+    padding: 10px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    max-width: 320px; /* Restrict log width */
+    margin: 0 auto; /* Center align */
   }
 
   .action-buttons {
-    flex-direction: column; 
-    gap: 5px; 
+    gap: 8px;
+    max-width: 300px;
+    margin: 0 auto;
   }
 
   button {
-    font-size: 12px; 
-    padding: 8px 15px; 
+    font-size: 12px;
+    padding: 8px;
+    max-width: 220px; /* Prevent wide buttons */
   }
 }
