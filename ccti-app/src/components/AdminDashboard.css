@@ -138,49 +138,88 @@ button:hover {
   opacity: 0.9;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
-  .stats-cards {
-    width: 90%;
-  }
-
-  .stat-card {
-    flex: 1 1 calc(33% - 10px); /* Make cards slightly smaller on medium screens */
-  }
-
-  .chart {
-    flex: 1 1 calc(45% - 15px);
-  }
-}
-
 @media (max-width: 768px) {
   .stats-cards {
     flex-direction: column;
     width: 100%;
-    gap: 5px; /* Further reduce gap on small screens */
+    gap: 5px; 
   }
 
   .stat-card {
-    flex: 1 1 100%; /* Make cards stack on top of each other */
-    min-width: 100%; /* Full width on small screens */
+    flex: 1 1 100%; 
+    min-width: 100%; 
   }
 
   .chart {
-    flex: 1 1 100%; /* Charts will take full width */
+    flex: 1 1 100%; 
     margin-top: 20px;
   }
 
   .log-entry {
-    padding: 15px; /* Reduce padding in log entries */
-    margin-bottom: 10px; /* Reduced space between log entries */
+    padding: 15px; 
+    margin-bottom: 10px; 
   }
 
   .action-buttons {
-    flex-direction: column; /* Stack buttons vertically */
+    flex-direction: column; 
     gap: 5px;
   }
 
   .menu-button {
-    font-size: 20px; /* Reduce menu button size on small screens */
+    font-size: 20px; 
+  }
+}
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 15px; 
+  }
+
+  header {
+    width: 100%; 
+    justify-content: flex-end;
+  }
+
+  .menu-button {
+    font-size: 18px; 
+  }
+
+  .stats-cards {
+    flex-direction: column; 
+    width: 100%; 
+    gap: 10px;
+  }
+
+  .stat-card {
+    font-size: 12px; 
+    padding: 10px; 
+    min-width: 100%; 
+  }
+
+  .chart {
+    padding: 10px; 
+    margin-top: 15px;
+    flex: 1 1 100%; 
+  }
+
+  .large-chart,
+  .small-chart {
+    width: 100%; 
+    max-width: 100%; 
+  }
+
+  .log-entry {
+    padding: 10px; 
+    font-size: 12px; 
+    margin-bottom: 10px; 
+  }
+
+  .action-buttons {
+    flex-direction: column; 
+    gap: 5px; 
+  }
+
+  button {
+    font-size: 12px; 
+    padding: 8px 15px; 
   }
 }

@@ -169,22 +169,18 @@
 
 @media (max-width: 480px) {
     .predicted-outcome,
-    .ti-platforms {
-        width: 100%;
-        padding: 10px; 
-    }
-
+    .ti-platforms,
     .threshold-comparison {
-        width: 100%;
+        font-size: 0.75em;
         padding: 10px;
     }
 
     .back-arrow,
     .menu-button {
-        font-size: 1.2em; 
+        font-size: 0.9em;
     }
 
     .output-heading {
-        font-size: 1.1em;
+        font-size: 0.9em;
     }
 }
