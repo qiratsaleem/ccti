@@ -14,7 +14,7 @@
 .back-button {
     font-size: 1.2em;
     cursor: pointer;
-    color: #fff;
+    color: #00aaff;
     background: none;
     border: none;
     position: absolute;
@@ -27,7 +27,7 @@
 .hamburger-button {
     font-size: 1.5em;
     cursor: pointer;
-    color: #fff;
+    color: #00aaff;
     background: none;
     border: none;
     position: absolute;

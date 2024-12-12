@@ -1,0 +1,124 @@
+/* UserManagement Page */
+.user-management-page {
+    padding: 20px;
+    background-color: #1c1c27;
+    min-height: 100vh;
+    color: #f5f5f5;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+}
+
+/* Back Arrow */
+.back-arrow {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    color: #00aaff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Sidebar Icon */
+.sidebar-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #00aaff;
+    cursor: pointer;
+}
+
+.user-management-container {
+    margin: auto;
+    max-width: 800px;
+    background-color: #2e2e42;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.header {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.user-table th {
+    background-color: #1f1f36;
+    color: #00aaff;
+}
+
+.user-table td {
+    background-color: #222;
+    color: #f5f5f5;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button, .delete-button, .cancel-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #218838;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.cancel-button:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-management-container {
+        padding: 1.5rem;
+    }
+
+    .user-table th, .user-table td {
+        padding: 0.8rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
