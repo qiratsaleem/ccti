@@ -90,8 +90,6 @@ body, html {
   .add-user-button:hover, .share-credentials-button:hover {
     background-color: #0056b3;
   }
-  
-  /* Modal Styles */
   .modal {
     position: fixed;
     top: 0;
@@ -141,13 +139,12 @@ body, html {
   .modal-buttons button:hover {
     background-color: #0056b3;
   }
-/* Mobile-Specific Adjustments */
 @media (max-width: 768px) {
-    /* Adjust Back Arrow and Menu Icon */
+ 
     .back-arrow, .menu-icon {
-      position: fixed;  /* Use fixed positioning to keep them outside the container */
+      position: fixed;  
       top: 10px;
-      z-index: 1010; /* Ensure they appear above the content */
+      z-index: 1010; 
     }
   
     .back-arrow {
@@ -157,13 +154,10 @@ body, html {
     .menu-icon {
       right: 10px;
     }
-  
-    /* Add space between the icons and the container */
     .add-user-page {
-      padding-top: 40px; /* Provide enough space for the icons */
+      padding-top: 40px; 
+      position: relative;
     }
-  
-    /* Form Container Alignment */
     .add-user-container {
       padding: 2rem;
       width: 100%;
