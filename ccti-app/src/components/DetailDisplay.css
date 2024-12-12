@@ -171,16 +171,16 @@
     .predicted-outcome,
     .ti-platforms,
     .threshold-comparison {
-        font-size: 0.75em;
+        font-size: 0.8em;
         padding: 10px;
+    }
+
+    .output-heading {
+        font-size: 1em;
     }
 
     .back-arrow,
     .menu-button {
-        font-size: 0.9em;
-    }
-
-    .output-heading {
         font-size: 0.9em;
     }
 }
