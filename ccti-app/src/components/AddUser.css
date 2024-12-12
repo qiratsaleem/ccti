@@ -141,4 +141,56 @@ body, html {
   .modal-buttons button:hover {
     background-color: #0056b3;
   }
+  /* Mobile-Specific Adjustments */
+@media (max-width: 768px) {
+    /* Back Arrow and Menu Button */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+    }
+  
+    header .back-arrow {
+      position: relative;
+      left: 0;
+      font-size: 22px;
+    }
+  
+    header .menu-button {
+      position: relative;
+      right: 0;
+      font-size: 22px;
+    }
+  
+    /* Form Container Alignment */
+    .form-container {
+      padding: 16px;
+      margin: 16px auto;
+      max-width: 95%; /* Adjust width to fit screen */
+    }
+  
+    .form-container input,
+    .form-container select {
+      width: 100%;
+      font-size: 14px;
+    }
+  
+    /* Heading */
+    .form-container h1 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+  
+    /* Adjust input spacing */
+    .form-container label {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+  
+    .form-container input {
+      margin-bottom: 12px;
+    }
+  }
   
