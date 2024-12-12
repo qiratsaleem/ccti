@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "./Sidebar"; // Make sure Sidebar is properly imported
-import "./ReportPage.css"; // Check this CSS path is correct
+import { useNavigate, useLocation } from "react-router-dom";
+import Sidebar from "./Sidebar"; // Ensure Sidebar is imported correctly
+import "./ReportPage.css"; // Ensure your CSS path is correct
 
-// Define the main ReportPage function without exporting yet
 function ReportPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // Get current page location
 
   const handleSendClick = () => {
     alert(`Report sent to ${email}`);
@@ -24,12 +24,24 @@ function ReportPage() {
     setIsSidebarOpen(false);
   };
 
+  const handleBackClick = () => {
+    // Check if the user came from Admin Dashboard or Detail Display
+    if (location.state?.from === "admin-dashboard") {
+      navigate("/admin-dashboard");
+    } else if (location.state?.from === "detail-display") {
+      navigate("/detail-display");
+    } else {
+      // Default navigation (if no state is passed, go to admin dashboard)
+      navigate("/admin-dashboard");
+    }
+  };
+
   return (
     <div className="report-page">
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
 
       {/* Back Button */}
-      <button className="back-button" onClick={() => navigate("/detail-display")}>
+      <button className="back-button" onClick={handleBackClick}>
         ←
       </button>
 
@@ -145,4 +157,4 @@ function ReportPage() {
   );
 }
 
-export default ReportPage;  // Make sure only this line is present
+export default ReportPage;

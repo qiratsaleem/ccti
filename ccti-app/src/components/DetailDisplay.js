@@ -1,4 +1,3 @@
-// src/components/DetailDisplay.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Bar } from "react-chartjs-2";
@@ -13,7 +12,6 @@ function DetailDisplay() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({});
-  
 
   const thresholdComparisonData = {
     labels: ["Threshold 1", "Threshold 2", "Threshold 3", "Threshold 4"],
@@ -39,8 +37,13 @@ function DetailDisplay() {
     ],
   };
 
+  // Handle back navigation to admin-dashboard
   const handleBackClick = () => navigate("/admin-dashboard");
-  const handleReportNavigation = () => navigate("/report");
+
+  // Navigate to report page with state tracking
+  const handleReportNavigation = () => {
+    navigate("/report", { state: { from: "detail-display" } });
+  };
 
   const handlePlatformClick = (platform) => {
     const platformDetails = {
@@ -80,10 +83,7 @@ function DetailDisplay() {
             &#8592;
           </div>
           <h1 className="output-heading">Threat Intelligence Output</h1>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="menu-button"
-          >
+          <button onClick={() => setMenuOpen(!menuOpen)} className="menu-button">
             ☰
           </button>
         </div>
