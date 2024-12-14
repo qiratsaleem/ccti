@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import Charts from "./Charts";
 import "./Dashboard.css";
 
+
 Chart.register(...registerables);
 
 function Dashboard() {

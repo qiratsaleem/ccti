@@ -1,7 +1,7 @@
-// src/components/Login.js
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import logo from "./logo_.png"; // Correct path for the image
 
 function Login() {
   const navigate = useNavigate();
@@ -10,35 +10,28 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
- 
   const USERS = [
     { username: "admin", password: "password123", role: "admin" },
     { username: "user", password: "userpass", role: "user" },
   ];
 
   const handleLogin = () => {
- 
     const user = USERS.find(
       (u) => u.username === username && u.password === password
     );
 
     if (user) {
-   
       localStorage.setItem("role", user.role);
-
       navigate("/dashboard");
     } else {
- 
       setError("Invalid username or password");
     }
   };
 
   return (
     <div className="login-container">
-    
       <div className="logo">
-        <img src="/path/to/logo.png" alt="CCTI System" />
-        <h2>CCTI SYSTEM</h2>
+        <img src={logo} alt="CCTI System" />
       </div>
 
       <h2>Log in to your account</h2>
@@ -65,7 +58,6 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-    
         <div className="show-password">
           <input
             type="checkbox"
