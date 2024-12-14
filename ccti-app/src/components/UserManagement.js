@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom"; 
 import { UserContext } from "../context/UserContext";
 import Sidebar from "./Sidebar";
 import "./UserManagement.css";
@@ -16,6 +16,15 @@ function UserManagement() {
   });
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();  
+
+  const handleBackClick = () => {
+    if (location.state?.from === "add-user") {
+      navigate("/add-user");
+    } else {
+      navigate("/dashboard", { state: { from: "user-management" } });
+    }
+  };
 
   const handleDelete = (index) => {
     const updatedUsers = users.filter((_, i) => i !== index);
@@ -47,7 +56,7 @@ function UserManagement() {
 
   return (
     <div className="user-management-page">
-      <button className="back-arrow" onClick={() => navigate("/add-user")}>
+      <button className="back-arrow" onClick={handleBackClick}>
         ←
       </button>
       <button className="sidebar-icon" onClick={toggleSidebar}>

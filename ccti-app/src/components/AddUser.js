@@ -29,7 +29,8 @@ function AddUser() {
   const handleAddUser = () => {
     setUsers([...users, formData]);
     alert("User added successfully!");
-    navigate("/user-management"); // Navigate to User Management page
+    navigate("/user-management", { state: { from: "add-user" } });
+
   };
 
   const toggleSidebar = () => {
@@ -48,7 +49,7 @@ function AddUser() {
 
   return (
     <div className="add-user-page">
-      <button className="back-arrow" onClick={() => navigate("/admin-dashboard")}>
+      <button className="back-arrow" onClick={() => navigate("/dashboard")}>
         ←
       </button>
       <button className="menu-icon" onClick={toggleSidebar}>

@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    width: 100%; /* Make container span the full width */
+    width: 100%; 
     background-color: #1d1f30;
     color: #ffffff;
     padding: 0px 50px;
@@ -21,7 +21,7 @@
 }
 
 .logo img {
-    width: 80px; /* Adjust the logo size */
+    width: 80px; 
 }
 
 .logo h2 {
@@ -38,8 +38,8 @@ h2 {
 form {
     display: flex;
     flex-direction: column;
-    width: 80%; /* Make the form responsive */
-    max-width: 400px; /* Set a maximum width for larger screens */
+    width: 80%; 
+    max-width: 400px; 
 }
 
 label {

@@ -2,18 +2,18 @@
 .sidebar {
     position: fixed;
     top: 0;
-    right: -300px; /* Start off-screen on the right */
+    right: -300px; 
     width: 250px;
     height: 100%;
     background-color: #1466B8;
     color: #FFFFFF;
     padding: 20px;
-    transition: right 0.3s ease; /* Smooth slide effect */
-    z-index: 1000; /* Ensure sidebar is on top */
+    transition: right 0.3s ease; 
+    z-index: 1000; 
 }
 
 .sidebar.open {
-    right: 0; /* Slide in when open */
+    right: 0; 
 }
 
 .sidebar ul {
@@ -26,7 +26,7 @@
     cursor: pointer;
 }
 
-/* Close button inside the sidebar */
+
 .close-button {
     background: none;
     border: none;
@@ -38,7 +38,7 @@
     right: 10px;
 }
 
-/* Admin Section */
+
 .admin-section {
     display: flex;
     align-items: center;
@@ -56,7 +56,6 @@
     font-weight: bold;
 }
 
-/* Menu Items */
 .menu-item {
     color: #FFFFFF;
     text-decoration: none;
@@ -68,7 +67,7 @@
     margin: 20px 0 10px;
 }
 
-/* Logout Button */
+
 .logout-button {
     background-color: #FF5C5C;
     color: #FFFFFF;

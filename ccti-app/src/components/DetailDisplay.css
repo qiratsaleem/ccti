@@ -20,7 +20,6 @@
     box-sizing: border-box;
 }
 
-/* Header Container */
 .header-container {
     display: flex;
     justify-content: center;
@@ -51,10 +50,9 @@
     text-align: center;
     color: #f0f0f0;
     font-size: 1.4em;
-    margin-bottom: 30px; /* Increased for spacing */
+    margin-bottom: 30px; 
 }
 
-/* Main Content Layout */
 .main-content {
     display: flex;
     flex-wrap: wrap;
@@ -62,7 +60,7 @@
     gap: 20px;
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 30px; /* Added gap below containers */
+    margin-bottom: 30px; 
 }
 
 .predicted-outcome,
@@ -85,10 +83,9 @@
 
 .threshold-comparison {
     flex: 1 1 calc(100% - 20px);
-    margin-top: 30px; /* Added gap above the graph */
+    margin-top: 30px; 
 }
 
-/* Popup Styles */
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -112,7 +109,7 @@
     text-align: center;
 }
 
-/* Responsive Styles */
+
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column;

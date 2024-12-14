@@ -12,6 +12,8 @@ function DetailDisplay() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({});
+ 
+  const role = localStorage.getItem("role") || "user";  
 
   const thresholdComparisonData = {
     labels: ["Threshold 1", "Threshold 2", "Threshold 3", "Threshold 4"],
@@ -37,10 +39,15 @@ function DetailDisplay() {
     ],
   };
 
-  // Handle back navigation to admin-dashboard
-  const handleBackClick = () => navigate("/admin-dashboard");
+  
+  const handleBackClick = () => {
+    if (role === "admin") {
+      navigate("/dashboard"); 
+    } else {
+      navigate("/dashboard"); 
+    }
+  };
 
-  // Navigate to report page with state tracking
   const handleReportNavigation = () => {
     navigate("/report", { state: { from: "detail-display" } });
   };
@@ -104,7 +111,7 @@ function DetailDisplay() {
               The system has analyzed data from multiple platforms, providing a
               unified reputation score to indicate the overall security posture.
             </p>
-            {/* Generate Report Button */}
+         
             <button className="generate-report-btn" onClick={handleReportNavigation}>
               Generate Report
             </button>

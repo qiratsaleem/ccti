@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Sidebar from "./Sidebar"; // Ensure Sidebar is imported correctly
-import "./ReportPage.css"; // Ensure your CSS path is correct
+import Sidebar from "./Sidebar"; 
+import "./ReportPage.css"; 
 
 function ReportPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // Get current page location
+  const location = useLocation(); 
 
   const handleSendClick = () => {
     alert(`Report sent to ${email}`);
@@ -25,34 +25,26 @@ function ReportPage() {
   };
 
   const handleBackClick = () => {
-    // Check if the user came from Admin Dashboard or Detail Display
-    if (location.state?.from === "admin-dashboard") {
-      navigate("/admin-dashboard");
-    } else if (location.state?.from === "detail-display") {
+    if (location.state?.from === "detail-display") {
       navigate("/detail-display");
     } else {
-      // Default navigation (if no state is passed, go to admin dashboard)
-      navigate("/admin-dashboard");
+      navigate("/dashboard", { state: { from: "report-page" } });
     }
   };
+  
 
   return (
     <div className="report-page">
       <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
 
-      {/* Back Button */}
       <button className="back-button" onClick={handleBackClick}>
         ←
       </button>
 
-      {/* Hamburger Menu Button */}
       <button className="hamburger-button" onClick={toggleSidebar}>
-        &#9776; {/* Hamburger icon */}
+        &#9776;
       </button>
-
-      {/* Main Report Section */}
       <div className={`report-content ${isSidebarOpen ? "sidebar-open" : ""}`}>
-        {/* Report Heading */}
         <h1 className="report-heading">Report</h1>
 
         <div className="report-details">

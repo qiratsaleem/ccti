@@ -16,12 +16,12 @@ body, html {
     min-height: 100vh;
     padding: 20px;
     position: relative;
-    padding-top: 60px;  /* Ensure space for the icons */
+    padding-top: 60px;  
 }
 
 .back-arrow,
 .menu-icon {
-    position: fixed; /* Both icons fixed at the top */
+    position: fixed; 
     top: 10px;
     font-size: 24px;
     background: none;
@@ -31,17 +31,16 @@ body, html {
     
 }
 
-/* Back arrow positioning */
+
 .back-arrow {
     left: 10px;
 }
 
-/* Menu icon positioning */
 .menu-icon {
     right: 10px;
 }
 
-/* Add user container */
+
 .add-user-container {
     background-color: #2e2e42;
     border-radius: 12px;
@@ -50,7 +49,7 @@ body, html {
     max-width: 450px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     position: relative;
-    z-index: 1;  /* Content below fixed icons */
+    z-index: 1;  
 }
 
 .user-form label {
@@ -143,17 +142,17 @@ body, html {
     background-color: #0056b3;
 }
 
-/* Mobile-Specific Adjustments */
+
 @media (max-width: 768px) {
     .add-user-page {
-        padding-top: 60px;  /* Ensure space for fixed icons */
+        padding-top: 60px;  
     }
 
     .back-arrow,
     .menu-icon {
-        position: fixed;  /* Ensure both icons are fixed */
+        position: fixed;  
         top: 10px;
-        z-index: 1010;  /* Keep them on top of other content */
+        z-index: 1010;  
     }
 
     .back-arrow {

@@ -10,25 +10,39 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  // Static credentials
-  const STATIC_USERNAME = "admin";
-  const STATIC_PASSWORD = "password123";
+ 
+  const USERS = [
+    { username: "admin", password: "password123", role: "admin" },
+    { username: "user", password: "userpass", role: "user" },
+  ];
 
   const handleLogin = () => {
-    if (username === STATIC_USERNAME && password === STATIC_PASSWORD) {
-      navigate("/admin-dashboard");
+ 
+    const user = USERS.find(
+      (u) => u.username === username && u.password === password
+    );
+
+    if (user) {
+   
+      localStorage.setItem("role", user.role);
+
+      navigate("/dashboard");
     } else {
+ 
       setError("Invalid username or password");
     }
   };
 
   return (
     <div className="login-container">
+    
       <div className="logo">
         <img src="/path/to/logo.png" alt="CCTI System" />
         <h2>CCTI SYSTEM</h2>
       </div>
+
       <h2>Log in to your account</h2>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -42,6 +56,7 @@ function Login() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+
         <label>Password</label>
         <input
           type={showPassword ? "text" : "password"}
@@ -49,6 +64,8 @@ function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+
+    
         <div className="show-password">
           <input
             type="checkbox"
@@ -57,7 +74,9 @@ function Login() {
           />
           <label>Show Password</label>
         </div>
+
         {error && <p className="error-message">{error}</p>}
+
         <button type="submit">Login</button>
       </form>
     </div>
