@@ -117,7 +117,7 @@ function DetailDisplay() {
             </button>
           </div>
 
-          <div className="ti-platforms">
+          <div className="TIplatforms">
             <h3>TI PLATFORMS</h3>
             <div className="platform-status">
               <h4>Responded:</h4>
