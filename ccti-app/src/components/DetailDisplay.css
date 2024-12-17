@@ -78,7 +78,7 @@
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
   border-radius: 15px;
   padding: 20px;
-  font-size: 10px;
+  font-size: 12px;
   flex: 1 1 10%;
   min-width: 200px; /* Adjust to avoid over-expansion */
   color: #f0f0f0;
