@@ -62,9 +62,35 @@
     box-sizing: border-box;
     margin-bottom: 30px; 
 }
+.TIplatforms {
+  background: linear-gradient(145deg, #1f1f2e, #252538);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 20px;
+  font-size: 10px;
+  flex: 1 1 10%;
+  min-width: 200px; /* Adjust to avoid over-expansion */
+  color: #f0f0f0;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Add space below */
+}
+
+.platform-status ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.platform-item {
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.platform-item:hover {
+  background-color: #3a3a55;
+}
 
 .predicted-outcome,
-.ti-platforms,
 .threshold-comparison {
     background: linear-gradient(145deg, #1f1f2e, #252538);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
