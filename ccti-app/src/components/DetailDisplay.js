@@ -12,8 +12,8 @@ function DetailDisplay() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [popupData, setPopupData] = useState({});
- 
-  const role = localStorage.getItem("role") || "user";  
+
+  const role = localStorage.getItem("role") || "user";
 
   const thresholdComparisonData = {
     labels: ["Threshold 1", "Threshold 2", "Threshold 3", "Threshold 4"],
@@ -39,12 +39,11 @@ function DetailDisplay() {
     ],
   };
 
-  
   const handleBackClick = () => {
     if (role === "admin") {
-      navigate("/dashboard"); 
+      navigate("/dashboard");
     } else {
-      navigate("/dashboard"); 
+      navigate("/dashboard");
     }
   };
 
@@ -96,28 +95,34 @@ function DetailDisplay() {
         </div>
 
         <div className="main-content">
-          <div className="predicted-outcome">
-            <h2>Predicted Outcome</h2>
-            <p>
-              Highlight key features that influenced the decision (e.g., IP
-              Reputation Score, Log Severity)
+          <div className="optimal-output">
+            <h2 className="optimal-output-heading">Optimal Output</h2>
+            <h4 className="ml-analysis-heading">ML Analysis Results</h4>
+
+            <div className="ml-response-list">
+              <div className="response-item">
+                <span className="label">IP Reputation Score</span>
+                <span className="value">0</span>
+              </div>
+              <div className="response-item">
+                <span className="label">Threat Classification</span>
+                <span className="value">Unrated</span>
+              </div>
+              <div className="response-item">
+                <span className="label">Risk Level</span>
+                <span className="value">Low</span>
+              </div>
+            </div>
+
+            <p className="ml-analysis-description">
+              Based on machine learning analysis, this IP address has been evaluated for potential security risks.
             </p>
-            <ul>
-              <li>IP Reputation</li>
-              <li>Threat Type</li>
-              <li>Severity</li>
-            </ul>
-            <p>
-              The system has analyzed data from multiple platforms, providing a
-              unified reputation score to indicate the overall security posture.
-            </p>
-         
             <button className="generate-report-btn" onClick={handleReportNavigation}>
               Generate Report
             </button>
           </div>
 
-          <div className="ti-platforms">
+          <div className="TIplatforms">
             <h3>TI PLATFORMS</h3>
             <div className="platform-status">
               <h4>Responded:</h4>

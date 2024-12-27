@@ -63,30 +63,134 @@
     margin-bottom: 30px; 
 }
 
-.predicted-outcome,
-.ti-platforms,
-.threshold-comparison {
+.optimal-output {
     background: linear-gradient(145deg, #1f1f2e, #252538);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
     border-radius: 15px;
     padding: 20px;
-    flex: 1 1 calc(33% - 20px);
-    min-width: 280px;
-    max-width: 600px;
+    font-size: 14px;
+    flex: 1 1 50%;
+    min-width: 200px; 
+    color: #f0f0f0;
     box-sizing: border-box;
-    font-size: 0.9em;
+    margin-bottom: 20px; 
+   
+  }
+  
+  .optimal-output-heading {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fefdfd;
+  }
+  
+  .ml-analysis-heading {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fefdfd;
+  }
+  
+  .ml-response-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .response-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #837f7f;
+  }
+  
+  .response-item .label {
+    font-weight: bold;
+    color: #fefdfd;
+  }
+  .response-item .value {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #f0eded; 
+    color: #1c1b1b; 
+    border-radius: 5px;
+    font-weight: normal; 
 }
-
-.predicted-outcome {
-    flex: 1 1 calc(60% - 20px);
-}
-
-.threshold-comparison {
-    flex: 1 1 calc(100% - 20px);
-    margin-top: 30px; 
-}
-
-.popup-overlay {
+  
+  .response-item .value {
+    color: #1c1b1b;
+  }
+  
+  .ml-analysis-description {
+    font-size: 0.95rem;
+    color: #f0ebeb;
+    margin-top: 15px;
+    line-height: 1.5;
+  }
+  
+  .generate-report-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #2b2b7b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .generate-report-btn:hover {
+    background-color: #3b3b57;
+  }
+  .TIplatforms {
+    background: linear-gradient(145deg, #1f1f2e, #252538);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 14px;
+    flex: 1 1 5%;
+    min-width: 200px; 
+    color: #f0f0f0;
+    box-sizing: border-box;
+    margin-bottom: 20px; 
+  }
+  
+  .platform-status ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .platform-item {
+    padding: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .platform-item:hover {
+    background-color: #3a3a55;
+  }
+  
+  
+  .threshold-comparison {
+    background: linear-gradient(145deg, #1f1f2e, #252538);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 40px;
+    font-size: 12px;
+    margin-top: 20px;
+    width: 70%;
+    box-sizing: border-box;
+    margin-left: 120px;
+    margin-right: 120px;
+  }
+  
+  .popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -97,9 +201,9 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-}
-
-.popup-content {
+  }
+  
+  .popup-content {
     background: linear-gradient(145deg, #2f2f3e, #22222d);
     padding: 20px;
     border-radius: 12px;
@@ -107,65 +211,116 @@
     max-width: 400px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
     text-align: center;
-}
-
-
-@media (max-width: 768px) {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .popup-content h3 {
+    font-size: 1.4em;
+    color: #ffffff;
+    margin-bottom: 15px;
+  }
+  
+  .popup-content p {
+    font-size: 1rem;
+    color: #b0b0b0;
+    margin-bottom: 20px;
+  }
+  
+  .popup-content button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .popup-content button:hover {
+    background-color: #45a049;
+  }
+  
+  .popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .popup-close:hover {
+    color: #ff4d4d;
+  }
+  
+  /* Mobile responsiveness fixes */
+  @media (max-width: 768px) {
     .main-content {
-        flex-direction: column;
-        align-items: center;
+      flex-direction: column;
+      align-items: center;
     }
-
-    .predicted-outcome,
-    .ti-platforms,
+  
+    .optimal-output,
+    .TIplatforms {
+      flex: none;
+      width: 90%;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+  
     .threshold-comparison {
-        flex: 1 1 90%;
-        margin-bottom: 20px;
+      width: 90%;
+      padding: 15px;
+      margin-left: 0;
+      margin-right: 0;
     }
-
-    .back-arrow,
+  
+    .back-arrow {
+      top: 30px;
+      left: 20px;
+    }
+  
     .menu-button {
-        font-size: 1em;
+      top: 30px;
+      right: 20px;
     }
-
+  
     .output-heading {
-        font-size: 1.2em;
+      font-size: 1.2em;
+      margin-top: 10px;
     }
-}
-
-@media (max-width: 480px) {
-    .predicted-outcome,
-    .ti-platforms,
+  }
+  
+  @media (max-width: 480px) {
+    .back-arrow {
+      top: 20px;
+      left: 10px;
+    }
+  
+    .menu-button {
+      top: 20px;
+      right: 10px;
+    }
+  
+    .output-heading {
+      font-size: 1.1em;
+    }
+  
+    .optimal-output,
+    .ti-platforms {
+      width: 100%;
+      padding: 20px;
+    }
+  
     .threshold-comparison {
-        font-size: 0.8em;
-        padding: 10px;
+      width: 100%;
+      padding: 10px;
     }
-
-    .output-heading {
-        font-size: 1em;
+  
+    .platform-item {
+      padding: 8px;
     }
-
-    .back-arrow,
-    .menu-button {
-        font-size: 0.9em;
-    }
-}
-
-
-@media (max-width: 480px) {
-    .predicted-outcome,
-    .ti-platforms,
-    .threshold-comparison {
-        font-size: 0.8em;
-        padding: 10px;
-    }
-
-    .output-heading {
-        font-size: 1em;
-    }
-
-    .back-arrow,
-    .menu-button {
-        font-size: 0.9em;
-    }
-}
+  }

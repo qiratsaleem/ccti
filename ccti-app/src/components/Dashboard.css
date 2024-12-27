@@ -125,7 +125,10 @@
 }
 
 .investigate-button {
-  background-color: #1DB954;
+  background-color: #3498DB;
+}
+.unblock-button {
+  background-color: #1eb936;
 }
 
 button {
