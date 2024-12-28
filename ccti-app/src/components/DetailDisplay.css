@@ -1,3 +1,4 @@
+
 /* General Container Styles */
 .details-page-container {
     background-color: #1c1c27;
@@ -10,17 +11,17 @@
     width: 100%;
     box-sizing: border-box;
     min-height: 100vh;
-}
-
-.details-page {
+  }
+  
+  .details-page {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     box-sizing: border-box;
-}
-
-.header-container {
+  }
+  
+  .header-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,32 +29,32 @@
     margin-bottom: 20px;
     position: relative;
     padding: 0 10px;
-}
-
-.back-arrow {
+  }
+  
+  .back-arrow {
     font-size: 1.2em;
     cursor: pointer;
     color: #00aaff;
     position: absolute;
     left: 10px;
-}
-
-.menu-button {
+  }
+  
+  .menu-button {
     font-size: 1.2em;
     cursor: pointer;
     color: #00aaff;
     position: absolute;
     right: 10px;
-}
-
-.output-heading {
+  }
+  
+  .output-heading {
     text-align: center;
     color: #f0f0f0;
     font-size: 1.4em;
     margin-bottom: 30px; 
-}
-
-.main-content {
+  }
+  
+  .main-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -61,33 +62,9 @@
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 30px; 
-    .predicted-outcome {
-  background: linear-gradient(145deg, #1f1f2e, #252538);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  padding: 50px;
-  font-size: 14px;
-  flex: 1 1 50%;
-  min-width: 200px;
-  box-sizing: border-box;
-  margin-bottom: 20px; /* Add space below */
-}
-}
-.TIplatforms {
-  background: linear-gradient(145deg, #1f1f2e, #252538);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  padding: 20px;
-  font-size: 14px;
-  flex: 1 1 10%;
-  min-width: 200px; /* Adjust to avoid over-expansion */
-  color: #f0f0f0;
-  box-sizing: border-box;
-  margin-bottom: 20px; /* Add space below */
-}
-
-<<<<<<< HEAD
-.optimal-output {
+  }
+  
+  .optimal-output {
     background: linear-gradient(145deg, #1f1f2e, #252538);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
     border-radius: 15px;
@@ -105,14 +82,14 @@
     font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 15px;
-    color: #fefdfd;
+    color: #f0ebeb;
   }
   
   .ml-analysis-heading {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #fefdfd;
+    color: #f0ebeb;
   }
   
   .ml-response-list {
@@ -134,16 +111,16 @@
   
   .response-item .label {
     font-weight: bold;
-    color: #fefdfd;
+    color: #f0ebeb;
   }
   .response-item .value {
     display: inline-block;
     padding: 5px 10px;
-    background-color: #f0eded; 
-    color: #1c1b1b; 
+    background-color: #ffffff; /* White background */
+    color: #1c1b1b; /* Dark text color for contrast */
     border-radius: 5px;
-    font-weight: normal; 
-}
+    font-weight: normal; /* Optional: adjust font weight */
+  }
   
   .response-item .value {
     color: #1c1b1b;
@@ -178,7 +155,7 @@
     border-radius: 15px;
     padding: 20px;
     font-size: 14px;
-    flex: 1 1 5%;
+    flex: 1 1 10%;
     min-width: 200px; 
     color: #f0f0f0;
     box-sizing: border-box;
@@ -280,6 +257,7 @@
     color: #ff4d4d;
   }
   
+  
   /* Mobile responsiveness fixes */
   @media (max-width: 768px) {
     .main-content {
@@ -334,7 +312,7 @@
     }
   
     .optimal-output,
-    .ti-platforms {
+    .TIplatforms {
       width: 100%;
       padding: 20px;
     }
@@ -348,167 +326,3 @@
       padding: 8px;
     }
   }
-=======
-.platform-status ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.platform-item {
-  padding: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.platform-item:hover {
-  background-color: #3a3a55;
-}
-
-
-.threshold-comparison {
-  background: linear-gradient(145deg, #1f1f2e, #252538);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  padding: 40px;
-  font-size: 12px;
-  margin-top: 20px;
-  width: 70%;
-  box-sizing: border-box;
-  margin-left: 120px;
-  margin-right: 120px;
-}
-
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.popup-content {
-  background: linear-gradient(145deg, #2f2f3e, #22222d);
-  padding: 20px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.6);
-  text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.popup-content h3 {
-  font-size: 1.4em;
-  color: #ffffff;
-  margin-bottom: 15px;
-}
-
-.popup-content p {
-  font-size: 1rem;
-  color: #b0b0b0;
-  margin-bottom: 20px;
-}
-
-.popup-content button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.popup-content button:hover {
-  background-color: #45a049;
-}
-
-.popup-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.popup-close:hover {
-  color: #ff4d4d;
-}
-
-/* Mobile responsiveness fixes */
-@media (max-width: 768px) {
-  .main-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .predicted-outcome,
-  .TIplatforms {
-    flex: none;
-    width: 90%;
-    padding: 30px;
-    margin-bottom: 20px;
-  }
-
-  .threshold-comparison {
-    width: 90%;
-    padding: 15px;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .back-arrow {
-    top: 30px;
-    left: 20px;
-  }
-
-  .menu-button {
-    top: 30px;
-    right: 20px;
-  }
-
-  .output-heading {
-    font-size: 1.2em;
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .back-arrow {
-    top: 20px;
-    left: 10px;
-  }
-
-  .menu-button {
-    top: 20px;
-    right: 10px;
-  }
-
-  .output-heading {
-    font-size: 1.1em;
-  }
-
-  .predicted-outcome,
-  .ti-platforms {
-    width: 100%;
-    padding: 20px;
-  }
-
-  .threshold-comparison {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .platform-item {
-    padding: 8px;
-  }
-}

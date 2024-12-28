@@ -12,6 +12,29 @@ function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [userRole, setUserRole] = useState("");
   const [popupData, setPopupData] = useState(null);
+  const [blockConfirmation, setBlockConfirmation] = useState(null);
+  const [unblockConfirmation, setUnblockConfirmation] = useState(null);
+
+  const blockButton = (logDetails) => {
+    if (userRole === "admin") {
+      // TODO: Implement blocking of users
+      console.log("Blocking user:", logDetails);
+      setBlockConfirmation(null); // Close confirmation after action
+    }
+  };
+
+  const handleBlock = (logDetails) => {
+    setBlockConfirmation(logDetails);
+  };
+
+  const handleUnblock = (logDetails) => {
+    setUnblockConfirmation(logDetails);
+  };
+
+  const confirmUnblock = (logDetails) => {
+    console.log("Unblocking:", logDetails);
+    setUnblockConfirmation(null);
+  };
 
   useEffect(() => {
     const roleFromStorage = localStorage.getItem("role");
@@ -25,12 +48,6 @@ function Dashboard() {
 
   const closePopup = () => {
     setPopupData(null);
-  };
-
-  const handleUnblockClick = (logDetails) => {
-    if (logDetails && !logDetails.includes('Unblock')) {
-      showPopup(logDetails);
-    }
   };
 
   const adminChartsData = [
@@ -212,31 +229,18 @@ function Dashboard() {
           <div
             className="log-entry"
             onClick={() =>
-              showPopup("2024-09-17 08:45:23Z | Login Attempt | User: jdoe | IP: 192.168.1.10 | Status: Failure")
-            }
-          >
-            <span>2024-09-17 08:45:23Z | Login Attempt | User: jdoe | IP: 192.168.1.10 | Status: Failure</span>
-            <div className="action-buttons">
-              <button onClick={() => navigate("/report")} className="report-button">
-                Report
-              </button>
-              <button className="block-button">Block</button>
-            </div>
-          </div>
-          <div
-            className="log-entry"
-            onClick={() =>
               showPopup("2024-09-17 14:30:00Z | Privileged Access | User: admin")
             }
           >
             <span>2024-09-17 14:30:00Z | Privileged Access | User: admin</span>
             <div className="action-buttons">
               <button
-                onClick={() =>
+                onClick={(e) => {
+                  e.stopPropagation();
                   navigate("/detail-display", {
                     state: { logId: "12345", details: "Investigation details for this log" },
-                  })
-                }
+                  });
+                }}
                 className="investigate-button"
               >
                 Investigate
@@ -246,12 +250,51 @@ function Dashboard() {
           <div
             className="log-entry"
             onClick={() =>
-              handleUnblockClick("2024-09-18 10:00:00Z | Blocked IP | User: anonymous | IP: 203.0.113.5")
+              showPopup("2024-09-17 08:45:23Z | Login Attempt | User: jdoe | IP: 192.168.1.10 | Status: Failure")
+            }
+          >
+            <span>2024-09-17 08:45:23Z | Login Attempt | User: jdoe | IP: 192.168.1.10 | Status: Failure</span>
+            <div className="action-buttons">
+              <button onClick={(e) => {
+                e.stopPropagation();
+                navigate("/report");
+              }} className="report-button">
+                Report
+              </button>
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleBlock("User: jdoe | IP: 192.168.1.10");
+                }}
+                className="block-button"
+              >
+                Block
+              </button>
+            </div>
+          </div>
+          <div
+            className="log-entry"
+            onClick={() =>
+              showPopup("2024-09-18 10:00:00Z | Blocked IP | User: anonymous | IP: 203.0.113.5")
             }
           >
             <span>2024-09-18 10:00:00Z | Blocked IP | User: anonymous | IP: 203.0.113.5</span>
             <div className="action-buttons">
-              <button className="unblock-button">Unblock</button>
+              <button onClick={(e) => {
+                e.stopPropagation();
+                navigate("/report");
+              }} className="report-button">
+                Report
+              </button>
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleUnblock("User: anonymous | IP: 203.0.113.5");
+                }} 
+                className="unblock-button"
+              >
+                Unblock
+              </button>
             </div>
           </div>
         </div>
@@ -259,10 +302,32 @@ function Dashboard() {
 
       {popupData && (
         <div className="popup-overlay" onClick={closePopup}>
-          <div className="popup-content">
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
             <h3>Log Details</h3>
             <p>{popupData}</p>
             <button onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
+
+      {blockConfirmation && (
+        <div className="popup-overlay" onClick={() => setBlockConfirmation(null)}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <h3>Confirm Block</h3>
+            <p>Are you sure you want to block {blockConfirmation}?</p>
+            <button onClick={() => blockButton(blockConfirmation)}>Yes</button>
+            <button onClick={() => setBlockConfirmation(null)}>Cancel</button>
+          </div>
+        </div>
+      )}
+
+      {unblockConfirmation && (
+        <div className="popup-overlay" onClick={() => setUnblockConfirmation(null)}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <h3>Confirm Unblock</h3>
+            <p>Are you sure you want to unblock {unblockConfirmation}?</p>
+            <button onClick={() => confirmUnblock(unblockConfirmation)}>Yes</button>
+            <button onClick={() => setUnblockConfirmation(null)}>Cancel</button>
           </div>
         </div>
       )}

@@ -58,17 +58,17 @@ function DetailDisplay() {
         severity: "High",
         reputation: "Poor",
       },
-      "Platform 2": {
+      "Pulsedive": {
         threatType: "Phishing",
         severity: "Medium",
         reputation: "Moderate",
       },
-      "Platform 5": {
+      "AbuseIPDB": {
         threatType: "Ransomware",
         severity: "Critical",
         reputation: "Very Poor",
       },
-      "Platform 7": {
+      "Platform 6": {
         threatType: "DDoS",
         severity: "Low",
         reputation: "Good",
@@ -125,7 +125,14 @@ function DetailDisplay() {
           <div className="TIplatforms">
             <h3>TI PLATFORMS</h3>
             <div className="platform-status">
-              <h4>Responded:</h4>
+            <h4>reputable:</h4>
+              <ul>
+                <li className="platform-item">Platform 2</li>
+                <li className="platform-item">Platform 5</li>
+                <li className="platform-item">Platform 7</li>
+                <li className="platform-item">Platform 8</li>
+              </ul>
+              <h4>non-reputable:</h4>
               <ul>
                 <li
                   className="platform-item"
@@ -135,29 +142,22 @@ function DetailDisplay() {
                 </li>
                 <li
                   className="platform-item"
-                  onClick={() => handlePlatformClick("Platform 2")}
+                  onClick={() => handlePlatformClick("Pulsedive")}
                 >
-                  Platform 2
+                  Pulsedive
                 </li>
                 <li
                   className="platform-item"
-                  onClick={() => handlePlatformClick("Platform 5")}
+                  onClick={() => handlePlatformClick("AbuseIPDB")}
                 >
-                  Platform 5
+                  AbuseIPDB
                 </li>
                 <li
                   className="platform-item"
-                  onClick={() => handlePlatformClick("Platform 7")}
+                  onClick={() => handlePlatformClick("Platform 6")}
                 >
-                  Platform 7
+                  Platform 6
                 </li>
-              </ul>
-              <h4>Not Responded:</h4>
-              <ul>
-                <li className="platform-item">Platform 3</li>
-                <li className="platform-item">Platform 4</li>
-                <li className="platform-item">Platform 6</li>
-                <li className="platform-item">Platform 8</li>
               </ul>
             </div>
           </div>
