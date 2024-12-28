@@ -164,7 +164,7 @@ function DetailDisplay() {
         </div>
 
         <div className="threshold-comparison">
-          <h3>Threshold Comparison</h3>
+          <h3>Reputation Score Comparison</h3>
           <Bar data={thresholdComparisonData} options={{ responsive: true }} />
         </div>
       </div>
