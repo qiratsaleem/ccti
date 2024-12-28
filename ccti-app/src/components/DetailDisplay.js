@@ -125,14 +125,14 @@ function DetailDisplay() {
           <div className="TIplatforms">
             <h3>TI PLATFORMS</h3>
             <div className="platform-status">
-            <h4>reputable:</h4>
+            <h4>Reputable:</h4>
               <ul>
                 <li className="platform-item">Platform 2</li>
                 <li className="platform-item">Platform 5</li>
                 <li className="platform-item">Platform 7</li>
                 <li className="platform-item">Platform 8</li>
               </ul>
-              <h4>non-reputable:</h4>
+              <h4>Non-Reputable:</h4>
               <ul>
                 <li
                   className="platform-item"
