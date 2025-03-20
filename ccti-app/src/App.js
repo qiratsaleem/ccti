@@ -22,6 +22,8 @@ function App() {
           <Route path="/report" element={<ReportPage />} />
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/user-management" element={<UserManagement />} />
+          <Route path="/detail-display/:logDetails" element={<DetailDisplay />} />
+         
          
         </Routes>
       </Router>

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Sidebar from "./Sidebar"; 
-import "./ReportPage.css"; 
+import Sidebar from "./Sidebar";
+import "./ReportPage.css";
 
 function ReportPage() {
   const [showPopup, setShowPopup] = useState(false);
   const [email, setEmail] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
 
+  // Get the report data and log details
+  const { reportData, logDetails } = location.state || {};
+  console.log(reportData)
   const handleSendClick = () => {
     alert(`Report sent to ${email}`);
     setShowPopup(false);
@@ -31,7 +34,35 @@ function ReportPage() {
       navigate("/dashboard", { state: { from: "report-page" } });
     }
   };
-  
+//   // Debugging logs
+//   useEffect(() => {
+//     console.log("Raw Report Data:", reportData);
+//     if (reportData?.report_data) {
+//       console.log("Structured Report Data:", reportData.report_data);
+//     }
+//   }, [reportData]);
+
+//   const parseReportContent = (data) => {
+//     if (!data?.report_data) {
+//       console.error("Invalid report data structure");
+//       return {
+//         executiveSummary: "Report generation failed. Please try again.",
+//         keyDetails: "Check console for details.",
+//         cveMapping: "No CVE data available.",
+//         actionableInsights: "Contact support if the issue persists.",
+//       };
+//     }
+
+//     // Directly use the structured data
+//     return {
+//       executiveSummary: data.report_data.executiveSummary || "No executive summary available.",
+//       keyDetails: data.report_data.keyDetails || "No key details available.",
+//       cveMapping: data.report_data.cveMapping || "No CVE mapping available.",
+//       actionableInsights: data.report_data.actionableInsights || "No insights available.",
+//     };
+//   };
+
+//   const { executiveSummary, keyDetails, cveMapping, actionableInsights } = parseReportContent(reportData || {});
 
   return (
     <div className="report-page">
@@ -40,84 +71,39 @@ function ReportPage() {
       <button className="back-button" onClick={handleBackClick}>
         ←
       </button>
-
       <button className="hamburger-button" onClick={toggleSidebar}>
         &#9776;
       </button>
+
       <div className={`report-content ${isSidebarOpen ? "sidebar-open" : ""}`}>
         <h1 className="report-heading">Report</h1>
-
         <div className="report-details">
-          <h2>Date: October 16, 2024</h2>
+          <h2>Date: {new Date().toLocaleDateString()}</h2>
           <p>Prepared for: [Organization Name]</p>
           <p>Prepared by: CCTI via Security Team</p>
+          <p>Log Details: {logDetails}</p>
+        </div>
 
-          <h3>1. Executive Summary</h3>
-          <p>
-            This report outlines a recently detected threat impacting critical
-            systems in the network. Analysis was conducted using data from
-            multiple threat intelligence (TI) platforms. One high-severity CVE
-            is identified as actively being exploited, posing significant risks
-            if not addressed.
-          </p>
+        <div className="report-sections">
+          <section>
+            <h2>Executive Summary</h2>
+            {<p>{reportData.executiveSummary}</p>}
+          </section>
 
-          <h3>2. Key Details</h3>
-          <p>Threat Detected: Phishing Campaign with Credential Harvesting</p>
-          <p>Date/Time Detected: October 15, 2024, 10:45 AM UTC</p>
-          <p>Affected Systems: Email Gateway, User Workstations (Windows OS)</p>
-          <p>
-            Source of Threat: Malicious email attachments targeting employees.
-          </p>
+          <section>
+            <h2>Key Details</h2>
+            {<p>{reportData.keyDetails}</p> }
+          </section>
 
-          <h3>3. CVE Mapping</h3>
-          <p>
-            <strong>CVE-2023-30799</strong>
-          </p>
-          <p>
-            Description: Exploitation of a remote code execution vulnerability
-            in Microsoft Outlook.
-          </p>
-          <p>Severity: Critical (CVSS Score: 9.8)</p>
-          <p>
-            TI Source Data: Exploit actively used in spear-phishing attacks.
-          </p>
+          <section>
+            <h2>CVE Mapping</h2>
+            {<p>{reportData.cveMapping}</p> }
+          </section>
 
-          <h4>Indicators of Compromise (IOCs)</h4>
-          <p>
-            Malicious domains:{" "}
-            <a
-              href="https://phishing-site.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              hxxps://phishing-site.com
-            </a>
-          </p>
-          <p>IP Addresses: 192.168.1.55, 203.0.113.45</p>
-
-          <h3>Actionable Insights</h3>
-          <h4>Mitigation Steps:</h4>
-          <ul>
-            <li>
-              Apply patch for CVE-2023-30799 to all Microsoft Outlook clients.
-            </li>
-            <li>
-              Quarantine the compromised systems for forensic investigation.
-            </li>
-            <li>
-              Update email filtering rules to block the identified malicious
-              domains.
-            </li>
-          </ul>
-
-          <h4>Next Steps:</h4>
-          <ul>
-            <li>
-              Alert the Incident Response Team to further investigate lateral
-              movement.
-            </li>
-            <li>Notify affected users and conduct a password reset.</li>
-          </ul>
+          <section>
+            <h2>Actionable Insights</h2>
+            {<p>{reportData.actionableInsights}</p>}
+          </section>
         </div>
 
         <div className="button-group">
@@ -130,7 +116,6 @@ function ReportPage() {
         </div>
       </div>
 
-      {/* Popup */}
       {showPopup && (
         <div className="popup">
           <div className="popup-content">

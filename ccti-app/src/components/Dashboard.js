@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Chart, registerables } from "chart.js";
+import { TailSpin } from "react-loader-spinner";
 import Sidebar from "./Sidebar";
 import Charts from "./Charts";
 import "./Dashboard.css";
@@ -14,12 +15,42 @@ function Dashboard() {
   const [popupData, setPopupData] = useState(null);
   const [blockConfirmation, setBlockConfirmation] = useState(null);
   const [unblockConfirmation, setUnblockConfirmation] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const blockButton = (logDetails) => {
-    if (userRole === "admin") {
-      // TODO: Implement blocking of users
-      console.log("Blocking user:", logDetails);
-      setBlockConfirmation(null); // Close confirmation after action
+  const handleReportButtonClick = async (logDetails) => {
+    try {
+      setLoading(true);
+      const userPrompt = `Generate a threat intelligence report for: ${logDetails}`;
+
+      const response = await fetch("http://127.0.0.1:8000/api/generate-report/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user_prompt: userPrompt }),
+      });
+      
+
+      if (!response.ok) {
+        throw new Error(`Failed to generate report. Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      //console.log("API Response Data:", data); // Debugging line
+      //console.log(response)
+
+      if (!data.report_data) {
+        throw new Error("Report data is missing in the API response");
+      }
+
+      // Navigate to ReportPage with the report data and log details
+      navigate("/report", { state: { reportData: data.report_data, logDetails } });
+      //console.log("Navigating to ReportPage with:", { reportData: data.report_data, logDetails });
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to generate report. Check console for details.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -31,6 +62,13 @@ function Dashboard() {
     setUnblockConfirmation(logDetails);
   };
 
+  const blockButton = (logDetails) => {
+    if (userRole === "admin") {
+      console.log("Blocking user:", logDetails);
+      setBlockConfirmation(null);
+    }
+  };
+
   const confirmUnblock = (logDetails) => {
     console.log("Unblocking:", logDetails);
     setUnblockConfirmation(null);
@@ -38,7 +76,6 @@ function Dashboard() {
 
   useEffect(() => {
     const roleFromStorage = localStorage.getItem("role");
-    console.log("Retrieved role:", roleFromStorage);
     setUserRole(roleFromStorage || "user");
   }, []);
 
@@ -213,6 +250,13 @@ function Dashboard() {
         </button>
       </header>
       <div className="dashboard-content">
+        {loading && (
+          <div className="loading-overlay">
+            <TailSpin color="#3498db" height={50} width={50} />
+            <p>Generating report, please wait...</p>
+          </div>
+        )}
+
         <div className="stats-cards">
           {stateCards.map((card, index) => (
             <div key={index} className="stat-card">
@@ -237,9 +281,10 @@ function Dashboard() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  navigate("/detail-display", {
-                    state: { logId: "12345", details: "Investigation details for this log" },
-                  });
+                  const logDetails = "2024-09-17 14:30:00Z | Privileged Access | User: admin";
+                  console.log("Dashboard.js logDetails:", logDetails); // Debugging line
+                  const encodedLogDetails = encodeURIComponent(logDetails);
+                  navigate(`/detail-display/${encodedLogDetails}`);
                 }}
                 className="investigate-button"
               >
@@ -250,21 +295,24 @@ function Dashboard() {
           <div
             className="log-entry"
             onClick={() =>
-              showPopup("2024-09-17 08:45:23Z | Login Attempt | User: jdoe | IP: 192.168.1.10 | Status: Failure")
+              showPopup("2024-09-17 08:44:29Z | Login Alarm | User: Jake | IP: 192.168.1.10 | Status: Failure")
             }
           >
-            <span>2024-09-17 08:45:23Z | Login Attempt | User: jdoe | IP: 192.168.1.10 | Status: Failure</span>
+            <span>2024-09-17 08:44:29Z | Login Alarm | User: Jake | IP: 192.168.1.10 | Status: Failure</span>
             <div className="action-buttons">
-              <button onClick={(e) => {
-                e.stopPropagation();
-                navigate("/report");
-              }} className="report-button">
-                Report
-              </button>
-              <button 
+              <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleBlock("User: jdoe | IP: 192.168.1.10");
+                  handleReportButtonClick("2024-09-17 08:44:29Z | Login Alarm | User: Jake | IP: 192.168.1.10 | Status: Failure");
+                }}
+                className="report-button"
+              >
+                Report
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleBlock("User: Jake | IP: 192.168.1.10");
                 }}
                 className="block-button"
               >
@@ -275,22 +323,25 @@ function Dashboard() {
           <div
             className="log-entry"
             onClick={() =>
-              showPopup("2024-09-18 10:00:00Z | Blocked IP | User: anonymous | IP: 203.0.113.5")
+              showPopup("2024-09-18 10:00:02Z | Blocked IP | User: anonymous | IP: 203.0.113.5")
             }
           >
-            <span>2024-09-18 10:00:00Z | Blocked IP | User: anonymous | IP: 203.0.113.5</span>
+            <span>2024-09-18 10:00:02Z | Blocked IP | User: anonymous | IP: 203.0.113.5</span>
             <div className="action-buttons">
-              <button onClick={(e) => {
-                e.stopPropagation();
-                navigate("/report");
-              }} className="report-button">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleReportButtonClick("2024-09-18 10:00:02Z | Blocked IP | User: anonymous | IP: 203.0.113.5");
+                }}
+                className="report-button"
+              >
                 Report
               </button>
-              <button 
+              <button
                 onClick={(e) => {
                   e.stopPropagation();
                   handleUnblock("User: anonymous | IP: 203.0.113.5");
-                }} 
+                }}
                 className="unblock-button"
               >
                 Unblock
