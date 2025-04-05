@@ -42,9 +42,8 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
-
 ROOT_URLCONF = 'ccti_backendd.urls'
-
+APPEND_SLASH = False  # Add this to handle slash inconsistencies
 # Template configuration
 TEMPLATES = [
     {

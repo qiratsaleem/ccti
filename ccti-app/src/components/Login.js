@@ -1,30 +1,54 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import logo from "./logo_.png"; // Correct path for the image
+import logo from "./logo_.png";
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("admin"); // Pre-filled for testing
+  const [password, setPassword] = useState("password123"); // Pre-filled for testing
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const USERS = [
-    { username: "admin", password: "password123", role: "admin" },
-    { username: "user", password: "userpass", role: "user" },
-  ];
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
-  const handleLogin = () => {
-    const user = USERS.find(
-      (u) => u.username === username && u.password === password
-    );
+    try {
+      // Updated URL with correct endpoint and trailing slash
+      const response = await fetch('http://localhost:8000/api/login/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      });
 
-    if (user) {
-      localStorage.setItem("role", user.role);
-      navigate("/dashboard");
-    } else {
-      setError("Invalid username or password");
+      // Check if response is OK
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Login failed');
+      }
+
+      const data = await response.json();
+      
+      if (data.success) {
+        localStorage.setItem('username', data.username);
+        localStorage.setItem('role', data.role);
+        navigate("/dashboard");
+      } else {
+        setError(data.error || "Invalid credentials");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(err.message || "Login failed. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -36,18 +60,16 @@ function Login() {
 
       <h2>Log in to your account</h2>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin();
-        }}
-      >
+      {error && <p className="error-message">{error}</p>}
+
+      <form onSubmit={handleLogin}>
         <label>Username</label>
         <input
           type="text"
           placeholder="Enter username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          required
         />
 
         <label>Password</label>
@@ -56,6 +78,7 @@ function Login() {
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
         <div className="show-password">
@@ -67,9 +90,9 @@ function Login() {
           <label>Show Password</label>
         </div>
 
-        {error && <p className="error-message">{error}</p>}
-
-        <button type="submit">Login</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Logging in..." : "Login"}
+        </button>
       </form>
     </div>
   );

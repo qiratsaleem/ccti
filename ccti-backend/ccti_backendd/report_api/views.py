@@ -6,7 +6,55 @@ import google.generativeai as genai
 
 # Configure the Gemini API
 genai.configure(api_key='AIzaSyAMXpT4_ywSoRWOmv2r8zHqAkE_peWBaj4')  # Replace with your actual API key
+HARDCODED_USERS = {
+    'admin': {'password': 'password123', 'role': 'admin'},
+    'user': {'password': 'userpass', 'role': 'user'}
+}
 
+@csrf_exempt
+def api_login(request):
+    if request.method == 'POST':
+        try:
+            # Ensure proper JSON parsing
+            try:
+                data = json.loads(request.body)
+            except json.JSONDecodeError:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Invalid JSON format'
+                }, status=400)
+                
+            username = data.get('username')
+            password = data.get('password')
+            
+            if not username or not password:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Username and password are required'
+                }, status=400)
+            
+            if username in HARDCODED_USERS and password == HARDCODED_USERS[username]['password']:
+                return JsonResponse({
+                    'success': True,
+                    'username': username,
+                    'role': HARDCODED_USERS[username]['role']
+                })
+            else:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Invalid credentials'
+                }, status=401)
+                
+        except Exception as e:
+            return JsonResponse({
+                'success': False,
+                'error': 'Internal server error'
+            }, status=500)
+    
+    return JsonResponse({
+        'success': False,
+        'error': 'Method not allowed'
+    }, status=405)
 @csrf_exempt
 def generate_report(request):
     if request.method == 'POST':
@@ -19,7 +67,7 @@ def generate_report(request):
                 return JsonResponse({'error': 'user_prompt is required'}, status=400)
 
             # Initialize the Gemini model
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-1.5-pro')
 
             # Generate the report with strict structure
             response = model.generate_content(
