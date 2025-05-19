@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('login/', views.api_login, name='api_login'),  # Now the full path will be /api/login/
-    path('generate-report/', views.generate_report, name='generate_report'),
+    path('login/', views.api_login, name='api_login'),  # Changed from 'login/' to 'api/login/'
+    path('agenerate-report/', views.generate_report, name='generate_report'),
+    path('get-configurations/', views.get_configurations, name='get_configurations'),
+    path('update-configurations/', views.update_configurations, name='update_configurations'),
 ]

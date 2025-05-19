@@ -7,6 +7,7 @@ import DetailDisplay from "./components/DetailDisplay";
 import ReportPage from "./components/ReportPage";
 import AddUser from "./components/AddUser";
 import UserManagement from "./components/UserManagement";
+import ConfigInterface from "./components/ConfigInterface";
 import { UserProvider } from "./context/UserContext";
 
 function App() {
@@ -23,8 +24,8 @@ function App() {
           <Route path="/add-user" element={<AddUser />} />
           <Route path="/user-management" element={<UserManagement />} />
           <Route path="/detail-display/:logDetails" element={<DetailDisplay />} />
-         
-         
+          {/* Fixed route path - lowercase and consistent */}
+          <Route path="/configuration" element={<ConfigInterface />} />
         </Routes>
       </Router>
     </UserProvider>

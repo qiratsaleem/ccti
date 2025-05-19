@@ -1,5 +1,9 @@
 from pathlib import Path
 import os
+from dotenv import load_dotenv  # Add this import
+
+# Load environment variables
+load_dotenv()  # Add this line
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,12 +12,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v%g^%n*!4^dj8j)v)5m-jie1ac%18i!iqh0hnogs70l!n3l-z='
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-fallback-key')  # Modified
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'  # Modified
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')  # Modified
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -39,9 +44,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# settings.py
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    'authorization',
+    'content-type',
+]
+
+SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 ROOT_URLCONF = 'ccti_backendd.urls'
 APPEND_SLASH = False  # Add this to handle slash inconsistencies
 # Template configuration
@@ -71,6 +89,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Example for Gmail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'saleemahmad2210@gmail.com'  # Your email
+EMAIL_HOST_PASSWORD = 'fmli dkjj gpfy lrfy'  # App password (not regular password)
+DEFAULT_FROM_EMAIL = 'saleemahmad2210@gmail.com'  # Same as EMAIL_HOST_USER
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

@@ -5,8 +5,8 @@ import logo from "./logo_.png";
 
 function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("admin"); // Pre-filled for testing
-  const [password, setPassword] = useState("password123"); // Pre-filled for testing
+  const [username, setUsername] = useState("config_admin"); // Pre-filled with config admin
+  const [password, setPassword] = useState("config123"); // Pre-filled with config password
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +17,6 @@ function Login() {
     setError("");
 
     try {
-      // Updated URL with correct endpoint and trailing slash
       const response = await fetch('http://localhost:8000/api/login/', {
         method: 'POST',
         headers: {
@@ -29,7 +28,6 @@ function Login() {
         })
       });
 
-      // Check if response is OK
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(errorData.error || 'Login failed');
@@ -40,7 +38,13 @@ function Login() {
       if (data.success) {
         localStorage.setItem('username', data.username);
         localStorage.setItem('role', data.role);
-        navigate("/dashboard");
+        
+        // Redirect based on role
+        if (data.role === 'access_manager') {
+          navigate("/configuration"); // New route for config interface
+        } else {
+          navigate("/dashboard"); // Existing dashboard for others
+        }
       } else {
         setError(data.error || "Invalid credentials");
       }
